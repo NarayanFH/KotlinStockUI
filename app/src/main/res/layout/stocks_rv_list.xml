@@ -2,22 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="3dp">
-
                 <TextView
                     android:id="@+id/tvCircleStocksName"
                     android:layout_width="wrap_content"
@@ -84,8 +77,8 @@
                     android:id="@+id/tv1DayStatic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:paddingStart="10dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="2dp"
                     android:text="1 D"
@@ -109,8 +102,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:paddingTop="10dp"
                     android:paddingStart="10dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="2dp"
                     android:text="1 Y"
@@ -134,8 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:paddingTop="10dp"
                     android:paddingStart="10dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="2dp"
                     android:text="Market Cap"
@@ -156,10 +149,10 @@
 
                 <Button
                     android:id="@+id/btnExplore"
-                    android:background="@drawable/button_design"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
+                    android:background="@drawable/button_design"
                     android:backgroundTint="@color/blu"
                     android:text="Explore"
                     android:textColor="@color/white"
@@ -171,6 +164,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
