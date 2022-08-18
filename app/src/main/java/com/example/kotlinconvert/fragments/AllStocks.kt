@@ -16,7 +16,7 @@ import com.example.kotlinconvert.RetrofitAPI
 import com.example.kotlinconvert.Utils.NetworkClass
 import com.example.kotlinconvert.adapters.StocksRVAdapter
 import com.example.kotlinconvert.databinding.FragmentAllStocksBinding
-import com.example.kotlinconvert.models.StockModel
+import com.example.kotlinconvert.models.DataX
 import com.example.kotlinconvert.models.StockPage
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -30,7 +30,7 @@ import java.io.IOException
 
 class AllStocks : Fragment() {
     var mBinding: FragmentAllStocksBinding? = null
-    private var stocksModelList: ArrayList<StockModel>? = null
+    private var stocksModelList: ArrayList<DataX>? = null
     var stocksRVAdapter: StocksRVAdapter? = null
     var page = 1
     var savedPage = 1
@@ -48,7 +48,7 @@ class AllStocks : Fragment() {
             false
         )
         getDataFromAPI(page)
-        stocksModelList = ArrayList<StockModel>()
+        stocksModelList = ArrayList<DataX>()
         mBinding!!.rvStocksMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -79,24 +79,19 @@ class AllStocks : Fragment() {
                     println("Response body:" + response.body().toString())
                     try {
                         val jsonObject = JSONObject(response.body()!!.string())
-//                        val dataArray = jsonObject.getJSONArray("data")
-                        println("Data array:$jsonObject")
-
-
-//                        val gson = Gson()
-//                        val typeToken = object : TypeToken<List<StockModel?>?>() {}.type
-
-//                        val stockModel = response.body()
-//                        stocksRVAdapter = stockModel?.let {
-//                            activity?.let { it1 ->
-//                                StocksRVAdapter(
-//                                    it,
-//                                    it1
-//                                )
-//                            }
-//                        }
-
-
+                        val dataArray = jsonObject.getJSONArray("data")
+                        println("Data array:${dataArray[1]}")
+                        val value = jsonObject.optString("data", "")
+                        val gson = Gson()
+                        val typeToken = object : TypeToken<List<DataX?>?>() {}.type
+                        stocksRVAdapter = StocksRVAdapter(stocksModelList, activity!!)
+                        stocksModelList!!.addAll(
+                            gson.fromJson(
+                                value,
+                                typeToken
+                            )
+                        )
+                        println(stocksModelList)
                         mBinding!!.rvStocksMain.layoutManager = LinearLayoutManager(activity)
                         mBinding!!.rvStocksMain.adapter = stocksRVAdapter
                         val scrollToLastPosition = Integer.toString(page - 1) + 0
